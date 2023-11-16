@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutterslicing/model/listfood.dart';
 // import 'package:flutterslicing/model/listfood.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final ListFood data;
   const DetailPage({super.key, required this.data});
 
   @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -16,7 +22,7 @@ class DetailPage extends StatelessWidget {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Image.asset(data.image),
+              child: Image.asset(widget.data.image),
             ),
           ),
           Container(
@@ -27,14 +33,14 @@ class DetailPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.title,
+                      widget.data.title,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 14,
                       ),
                     ),
                     Text(
-                      data.category,
+                      widget.data.category,
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
@@ -49,7 +55,7 @@ class DetailPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 5),
                       child: Text(
-                        data.rate.toString(),
+                        widget.data.rate.toString(),
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Color(0xFF807E7E)),
@@ -67,13 +73,11 @@ class DetailPage extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(vertical: 24),
             child: Text(
-              data.descripton,
+              widget.data.descripton,
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(
-            height: 25,
-          ),
+          Spacer(),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
@@ -82,7 +86,7 @@ class DetailPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      data.price.toString(),
+                      widget.data.price.toString(),
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 24,
@@ -95,6 +99,7 @@ class DetailPage extends StatelessWidget {
                             color: Color(0xFFBABBC2)))
                   ],
                 ),
+                SizedBox(width: 70,),
                 Expanded(
                     child: SizedBox(
                   height: 50,
@@ -114,7 +119,8 @@ class DetailPage extends StatelessWidget {
                 ))
               ],
             ),
-          )
+          ),
+          SizedBox(height: 16,)
         ],
       )),
     );

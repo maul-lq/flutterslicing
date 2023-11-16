@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutterslicing/model/base.dart';
 import 'package:flutterslicing/model/listfood.dart';
 import 'package:flutterslicing/page/detail_page.dart';
 // import 'package:flutterslicing/page/onboarding.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
     final List<String> imgCategoriesName = ["bread", "carrot", "donut"];
+
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -92,7 +99,6 @@ class HomeScreen extends StatelessWidget {
                   child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      itemCount: 3,
                       itemBuilder: (BuildContext context, index) {
                         return Container(
                           decoration: BoxDecoration(
@@ -102,14 +108,17 @@ class HomeScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 12),
                           margin: EdgeInsets.symmetric(horizontal: 2),
                           child: Row(children: [
-                            Image.asset(
-                              "images/cate_${imgCategoriesName[index]}.png",
-                              width: 40,
-                            ),
+                            // Image.network(
+                            //   "images/cate_${imgCategoriesName[index]}.png",
+                            //   width: 40,
+                            // ),
+                            // Image.network("https://$imageSmallURL",
+                            //   width: 40,
+                            // ),
                             SizedBox(
                               width: 12,
                             ),
-                            Text(toCapitalize(imgCategoriesName[index])),
+                            // Text(toCapitalize(imgCategoriesName[index])),
                           ]),
                         );
                       }),
@@ -129,15 +138,17 @@ class HomeScreen extends StatelessWidget {
                       color: Color(0xff212131)),
                 ),
                 SizedBox(
-                  height: 180,
+                  height: 200,
                   child: ListView.builder(
                     itemCount: data.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => DetailPage(data: data[index],))),
+                        onTap: () =>
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DetailPage(
+                                      data: data[index],
+                                    ))),
                         child: Container(
                           decoration: BoxDecoration(color: Colors.white),
                           height: 80,
