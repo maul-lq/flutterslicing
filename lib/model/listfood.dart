@@ -15,26 +15,29 @@ class ListFood {
       required this.price});
 }
 
-List<ListFood> listFood = [
+List<ListFood> data = [
   ListFood(
       image: "images/food_orange.png",
       title: "Orange Asem",
       category: "Healthy",
       rate: 4.5,
-      descripton: "Makanan asal Bandung dengan tekstur\nyang lembut sehingga ketika dimakan rasanya enak.",
+      descripton:
+          "lorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emet.",
       price: 808.75),
   ListFood(
       image: "images/food_avocado.png",
       title: "Avocado Salad",
       category: "Healthy",
       rate: 4.2,
-      descripton: "Makanan asal Bandung dengan tekstur\nyang lembut sehingga ketika dimakan rasanya enak.",
+      descripton:
+          "lorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emet.",
       price: 250.75),
   ListFood(
       image: "images/food_gyoza.png",
       title: "Gyoza",
       category: "Meal",
       rate: 4.7,
-      descripton: "Makanan asal Bandung dengan tekstur\nyang lembut sehingga ketika dimakan rasanya enak.",
+      descripton:
+          "lorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emetlorem ipsum emet.",
       price: 808.75),
 ];

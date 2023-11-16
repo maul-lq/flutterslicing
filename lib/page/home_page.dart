@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterslicing/model/ListFood.dart';
+import 'package:flutterslicing/model/listfood.dart';
 import 'package:flutterslicing/page/detail_page.dart';
 // import 'package:flutterslicing/page/onboarding.dart';
 
@@ -131,13 +131,13 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: 180,
                   child: ListView.builder(
-                    itemCount: listFood.length,
+                    itemCount: data.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () => Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => DetailPage())),
+                                builder: (context) => DetailPage(data: data[index],))),
                         child: Container(
                           decoration: BoxDecoration(color: Colors.white),
                           height: 80,
@@ -146,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Image.asset(
-                                listFood[index].image,
+                                data[index].image,
                                 height: 80,
                               ),
                               SizedBox(
@@ -157,14 +157,14 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    listFood[index].title,
+                                    data[index].title,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14,
                                     ),
                                   ),
                                   Text(
-                                    listFood[index].category,
+                                    data[index].category,
                                     style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w700,
@@ -178,7 +178,7 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    listFood[index].rate.toString(),
+                                    data[index].rate.toString(),
                                     style:
                                         TextStyle(fontWeight: FontWeight.w700),
                                   ),
