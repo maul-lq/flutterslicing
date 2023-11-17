@@ -15,7 +15,7 @@ class ListFood {
       required this.price});
 }
 
-List<ListFood> data = [
+List<ListFood> _data = [
   ListFood(
       image: "images/food_orange.png",
       title: "Orange Asem",

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterslicing/model/base.dart';
-import 'package:flutterslicing/model/listfood.dart';
+// import 'package:flutterslicing/model/base.dart';
 import 'package:flutterslicing/page/detail_page.dart';
 // import 'package:flutterslicing/page/onboarding.dart';
 
@@ -12,10 +12,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Restaurant>? listResto;
   @override
   Widget build(BuildContext context) {
+    Restaurant.connAPIRestaurant().then((value) {
+      setState(() {
+      listResto = value;
+      });
+    });
     final List<String> imgCategoriesName = ["bread", "carrot", "donut"];
-
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -97,6 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 62,
                   child: ListView.builder(
+                      itemCount: imgCategoriesName.length,
                       scrollDirection: Axis.horizontal,
                       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                       itemBuilder: (BuildContext context, index) {
@@ -108,17 +114,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 12),
                           margin: EdgeInsets.symmetric(horizontal: 2),
                           child: Row(children: [
-                            // Image.network(
-                            //   "images/cate_${imgCategoriesName[index]}.png",
-                            //   width: 40,
-                            // ),
-                            // Image.network("https://$imageSmallURL",
+                            Image.asset(
+                              "images/cate_${imgCategoriesName[index]}.png",
+                              width: 40,
+                            ),
+                            // Image.network("https://$imageSmallURL${listResto?[index].pictureId}",
                             //   width: 40,
                             // ),
                             SizedBox(
                               width: 12,
                             ),
-                            // Text(toCapitalize(imgCategoriesName[index])),
+                            Text(toCapitalize(imgCategoriesName[index])),
                           ]),
                         );
                       }),
@@ -140,14 +146,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(
                   height: 200,
                   child: ListView.builder(
-                    itemCount: data.length,
+                    itemCount: listResto?.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () =>
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => DetailPage(
-                                      data: data[index],
+                                      restaurant: listResto![index],
                                     ))),
                         child: Container(
                           decoration: BoxDecoration(color: Colors.white),
@@ -156,9 +162,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               horizontal: 24, vertical: 12),
                           child: Row(
                             children: [
-                              Image.asset(
-                                data[index].image,
-                                height: 80,
+                              // Text("${listResto?.length}")
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  "$imageSmallURL${listResto?[index].pictureId}",
+                                  height: 80,
+                                ),
                               ),
                               SizedBox(
                                 width: 16,
@@ -168,19 +178,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    data[index].title,
+                                    "${listResto?[index].name}",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 14,
                                     ),
                                   ),
-                                  Text(
-                                    data[index].category,
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700,
-                                        color: Color(0xffcbccd5)),
-                                  )
+                                  // Text(
+                                  //   data[index].category,
+                                  //   style: TextStyle(
+                                  //       fontSize: 16,
+                                  //       fontWeight: FontWeight.w700,
+                                  //       color: Color(0xffcbccd5)),
+                                  // )
                                 ],
                               ),
                               Spacer(),
@@ -189,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
-                                    data[index].rate.toString(),
+                                    "${listResto?[index].rating}",
                                     style:
                                         TextStyle(fontWeight: FontWeight.w700),
                                   ),

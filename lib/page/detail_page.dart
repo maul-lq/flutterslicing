@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutterslicing/model/listfood.dart';
+import 'package:flutterslicing/model/base.dart';
+// import 'package:flutterslicing/model/listfood.dart';
 // import 'package:flutterslicing/model/listfood.dart';
 
-class DetailPage extends StatefulWidget {
-  final ListFood data;
-  const DetailPage({super.key, required this.data});
+class DetailPage extends StatelessWidget {
+  final Restaurant restaurant;
+  const DetailPage({super.key, required this.restaurant});
 
-  @override
-  State<DetailPage> createState() => _DetailPageState();
-}
-
-class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: PreferredSize(preferredSize: Size.fromHeight(40), child: AppBar()),
       body: SafeArea(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Image.asset(widget.data.image),
+            heightFactor: 0.5,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(250),
+              child: Image.network("$imageLargeURL${restaurant.pictureId}",
+              width: 300,
+              height:300),
             ),
           ),
           Container(
+            margin: EdgeInsets.only(top: 40),
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               children: [
@@ -33,16 +33,16 @@ class _DetailPageState extends State<DetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.data.title,
+                      restaurant.name,
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
-                        fontSize: 14,
+                        fontSize: 16,
                       ),
                     ),
                     Text(
-                      widget.data.category,
+                      restaurant.city,
                       style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: Color(0xffcbccd5)),
                     )
@@ -55,7 +55,7 @@ class _DetailPageState extends State<DetailPage> {
                     Padding(
                       padding: const EdgeInsets.only(right: 5),
                       child: Text(
-                        widget.data.rate.toString(),
+                        restaurant.rating,
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             color: Color(0xFF807E7E)),
@@ -71,10 +71,13 @@ class _DetailPageState extends State<DetailPage> {
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 24),
+            margin: EdgeInsets.symmetric(vertical: 8,horizontal: 8),
             child: Text(
-              widget.data.descripton,
-              textAlign: TextAlign.center,
+              restaurant.description,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                fontSize: 14
+              ),
             ),
           ),
           Spacer(),
@@ -86,7 +89,7 @@ class _DetailPageState extends State<DetailPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.data.price.toString(),
+                      "\$ 12.0",
                       style: TextStyle(
                         fontWeight: FontWeight.w700,
                         fontSize: 24,

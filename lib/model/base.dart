@@ -7,48 +7,41 @@ var imageSmallURL ="https://restaurant-api.dicoding.dev/images/small/";
 var imageLargeURL ="https://restaurant-api.dicoding.dev/images/large/";
 
 class Restaurant {
-  String? id;
-  String? name;
-  String? description;
-  String? pictureId;
-  String? city;
-  double? rating;
+  String id;
+  String name;
+  String description;
+  String pictureId;
+  String city;
+  String rating;
 
   Restaurant(
-      {this.id,
-      this.name,
-      this.description,
-      this.pictureId,
-      this.city,
-      this.rating});
-}
+      {
+      required this.id,
+      required this.name,
+      required this.description,
+      required this.pictureId,
+      required this.city,
+      required this.rating});
 
-class GetListRestaurant {
-  bool isError;
-  String message;
-  int count;
-  List<dynamic> restaurants;
-
-  GetListRestaurant({
-    required this.isError,
-    required this.message,
-    required this.count,
-    required this.restaurants,
-  });
-
-  factory GetListRestaurant.createGetListRestaurant(
-      Map<String, dynamic> object) {
-    return GetListRestaurant(
-        isError: object['error'],
-        message: object['message'],
-        count: object['count'],
-        restaurants: object['restaurants']);
+  factory Restaurant.createGetListRestaurant(Map<String, dynamic> objek) {
+    return Restaurant(
+      id: objek['id'],
+      name: objek['name'],
+      description: objek['description'],
+      pictureId: objek['pictureId'],
+      city: objek['city'],
+      rating: objek['rating'].toString()
+    );
   }
 
-  static Future<GetListRestaurant> connAPI() async {
-    var result = await http.get(Uri.https(baseURL,"/list"));
-    var jsonObject = json.decode(result.body);
-
-    return GetListRestaurant.createGetListRestaurant(jsonObject);
+  static Future<List<Restaurant>?> connAPIRestaurant() async {
+    var apiResult = await http.get(Uri.https(baseURL, '/list'));
+    var jsonObject = json.decode(apiResult.body);
+    List<dynamic> listRestaurant = jsonObject['restaurants'];
+    List<Restaurant> restaurant = [];
+    for (var element in listRestaurant) {
+      restaurant.add(Restaurant.createGetListRestaurant(element));
+    }
+    return restaurant;
   }
 }
