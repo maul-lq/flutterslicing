@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 // import 'package:flutterslicing/home.dart';
 // import 'package:flutterslicing/onboarding.dart';
-import 'package:flutterslicing/page/home_page.dart';
+// import 'package:flutterslicing/page/home_page.dart';
+import 'package:flutterslicing/page/test.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +23,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white)
       ),
-      home: const HomeScreen(),
+      // home: const HomeScreen(),
+      home: const Testing(),
     );
   }
 }

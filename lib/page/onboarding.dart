@@ -19,33 +19,29 @@ class OnBoardingScreen extends StatelessWidget {
                 height: 250.0,
               )),
               Spacer(),
-              Container(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "180K Store",
-                        style:
-                            TextStyle(fontSize: 16, color: Color(0xffCBCCD5)),
-                      )
-                    ]),
-              ),
-              Container(
-                child: Column(
+              Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 4,
-                    ),
                     Text(
-                      "Order Your\nFavorite Foods",
-                      style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xff212131)),
-                    ),
-                  ],
-                ),
+                      "180K Store",
+                      style:
+                          TextStyle(fontSize: 16, color: Color(0xffCBCCD5)),
+                    )
+                  ]),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    "Order Your\nFavorite Foods",
+                    style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w700,
+                        color: Color(0xff212131)),
+                  ),
+                ],
               ),
               Center(
                 child: InkWell(
